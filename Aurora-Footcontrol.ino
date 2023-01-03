@@ -1,12 +1,12 @@
-#define INPUT_SWITCH_1 3
-#define INPUT_SWITCH_2 4
-#define INPUT_SWITCH_3 5
-#define INPUT_SWITCH_4 6
-#define INPUT_SWITCH_5 7
+#define INPUT_SWITCH_1 7
+#define INPUT_SWITCH_2 6
+#define INPUT_SWITCH_3 4
+#define INPUT_SWITCH_4 5
+#define INPUT_SWITCH_5 3
 #define INPUT_SWITCH_6 8
 #define INPUT_SWITCH_7 9
-#define INPUT_SWITCH_8 10
-#define INPUT_SWITCH_9 11
+#define INPUT_SWITCH_8 11
+#define INPUT_SWITCH_9 10
 #define INPUT_SWITCH_0 12
 
 #define OUTPUT_1 A0
@@ -46,72 +46,72 @@ void loop()
   digitalWrite(OUTPUT_LED, LOW);
 
   
-  if (digitalRead(INPUT_SWITCH_0)) // 0
+  if (!digitalRead(INPUT_SWITCH_0)) // 0
   {
     active = true;
     Serial.print("0: ");
-    // 1001
-    // send(1, 0, 0, 1);
+    // 1001: Preset 0
+    send(1, 0, 0, 1);
     // 1110: switch to previous preset
-    send(1, 1, 1, 0);
+    // send(1, 1, 1, 0);
     return;
-  } else if (digitalRead(INPUT_SWITCH_1)) // 1
+  } else if (!digitalRead(INPUT_SWITCH_1)) // 1
   {
     active = true;
     Serial.print("1: ");
      // 0000
     send(1, 0, 1, 1);
     return;
-  } else if (digitalRead(INPUT_SWITCH_2)) // 2
+  } else if (!digitalRead(INPUT_SWITCH_2)) // 2
   {
     active = true;
     Serial.print("2: ");
     // 0001
     send(0, 0, 0, 1);
     return;
-  } else if (digitalRead(INPUT_SWITCH_3)) // 3
+  } else if (!digitalRead(INPUT_SWITCH_3)) // 3
   {
     active = true;
     Serial.print("3: ");
     // 1000
     send(1, 0, 0, 0);
     return;
-  } else if (digitalRead(INPUT_SWITCH_4)) // 4
+  } else if (!digitalRead(INPUT_SWITCH_4)) // 4
   {
     active = true;
     Serial.print("4: ");
     // 0010
     send(0, 0, 1, 0);
     return;
-  } else if (digitalRead(INPUT_SWITCH_5)) // 5
+  } else if (!digitalRead(INPUT_SWITCH_5)) // 5
   {
     active = true;
     Serial.print("5: ");
     // 0011
     send(0, 0, 1, 1);
     return;
-  } else if (digitalRead(INPUT_SWITCH_6)) // 6
+  } else if (!digitalRead(INPUT_SWITCH_6)) // 6
   {
     active = true;
     Serial.print("6: ");
     // 1010
     send(1, 0, 1, 0);
     return;
-  } else if (digitalRead(INPUT_SWITCH_7)) // 7
+  } else if (!digitalRead(INPUT_SWITCH_7)) // 7
   {
     active = true;
     Serial.print("7: ");
     // 0100
     send(0, 1, 0, 0);
     return;
-  } else if (digitalRead(INPUT_SWITCH_8)) // 8
+  } else if (!digitalRead(INPUT_SWITCH_8)) // 8
   {
     active = true;
     Serial.print("8: ");
     // 0101
     send(0, 1, 0, 1);
     return;
-  } else if (digitalRead(INPUT_SWITCH_9)) // 9
+  } else if (!digitalRead(INPUT_SWITCH_9)) // 9
   {
     active = true;
     Serial.print("9: ");
@@ -127,13 +127,6 @@ void loop()
 void send(uint8_t signal3, uint8_t signal4, uint8_t signal1, uint8_t signal2)
 {
   digitalWrite(OUTPUT_LED, HIGH);
-  Serial.print(signal1);
-  Serial.print(", ");
-  Serial.print(signal2);
-  Serial.print(", ");
-  Serial.print(signal3);
-  Serial.print(", ");
-  Serial.println(signal4);
   digitalWrite(OUTPUT_1, signal1);
   digitalWrite(OUTPUT_2, signal2);
   digitalWrite(OUTPUT_3, signal3);
